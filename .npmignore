@@ -1,0 +1,17 @@
+.circleci
+.nyc_output
+node_modules
+tests
+tools
+coverage
+.babelrc
+.npmrc
+.codecov.yml
+.eslintcache
+.editorconfig
+.eslintrc
+package-lock.json
+coverage.lcov
+.temp
+*.hbs
+book.json
