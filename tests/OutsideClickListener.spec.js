@@ -32,12 +32,12 @@ describe('OutsideClickListener', () => {
         expect(wrapper.find('#div-2').exists()).toBeTruthy();
     });
 
-    it('should not call onOuterClick callback on click inside children', () => {
-        const onOuterClick = jest.fn();
+    it('should not call onClickOutside callback on click inside children', () => {
+        const onClickOutside = jest.fn();
 
         document.addEventListener = jest.fn();
         const wrapper = mount(
-            <OutsideClickListener onOuterClick={ onOuterClick }>
+            <OutsideClickListener onClickOutside={ onClickOutside }>
                 <div id="div-1" />
                 <div id="div-2">
                     <div id="div-3" />
@@ -57,16 +57,16 @@ describe('OutsideClickListener', () => {
             }
         );
 
-        expect(onOuterClick).not.toHaveBeenCalled();
+        expect(onClickOutside).not.toHaveBeenCalled();
     });
 
-    it('should call onOuterClick callback on click outside children', () => {
-        const onOuterClick = jest.fn();
+    it('should call onClickOutside callback on click outside children', () => {
+        const onClickOutside = jest.fn();
 
         document.addEventListener = jest.fn();
         const wrapper = mount(
             <React.Fragment>
-                <OutsideClickListener onOuterClick={ onOuterClick }>
+                <OutsideClickListener onClickOutside={ onClickOutside }>
                     <div id="div-1" />
                     <div id="div-2">
                         <div id="div-3" />
@@ -83,6 +83,6 @@ describe('OutsideClickListener', () => {
 
         handleClick({ target });
 
-        expect(onOuterClick).toHaveBeenCalled();
+        expect(onClickOutside).toHaveBeenCalled();
     });
 });
