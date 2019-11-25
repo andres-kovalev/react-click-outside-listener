@@ -1,34 +1,18 @@
 const React = require('react');
 
-const { useRefs } = require('./hooks');
+const useOuterClickListener = require('./useOutsideClickListener');
 
 module.exports = OuterClickListener;
 
 function OuterClickListener({ onClickOutside, children }) {
-    const refs = useRefs();
-    const handleClick = React.useCallback(
-        (event) => {
-            const { target } = event;
-
-            if (!refs.refs.some(ref => ref.contains(target))) {
-                onClickOutside(event);
-            }
-        },
-        [ onClickOutside ]
-    );
-
-    React.useEffect(() => {
-        document.addEventListener('click', handleClick);
-
-        return () => document.removeEventListener('click', handleClick);
-    }, []);
+    const refs = useOuterClickListener(onClickOutside);
 
     if (typeof children === 'function') {
-        return children(refs.set);
+        return children(refs);
     }
 
     return React.Children.map(
         children,
-        (child, index) => React.cloneElement(child, { ref: refs.set(index) })
+        (child, index) => React.cloneElement(child, { ref: refs(index) })
     );
 }
