@@ -30,7 +30,7 @@ npm i -S react
 Nothing is easier than use `ClickOutsideListener` component - just wrap your content with it:
 
 ```js
-import ClickOutsideListener from 'react-click-outside-listener';
+import { ClickOutsideListener } from 'react-click-outside-listener';
 
 const Parent = () => {
     const handleClickOutside = ...;
@@ -83,6 +83,24 @@ const Parent = () => {
                     <div>Beware callbacks</div>
                     <div ref={ refs(1) }>
                         Another safe zone
+                    </div>
+                </div>
+            )}
+        </ClickOutsideListener>
+    );
+}
+```
+
+renderProp argument can be also used as regular ref:
+
+```js
+const Component = () => {
+    return (
+        <ClickOutsideListener onClickOutside={ handleClickOutside }>
+            {ref => (
+                <div>
+                    <div ref={ ref }>
+                        No callback when click here
                     </div>
                 </div>
             )}
@@ -150,3 +168,47 @@ const Dropdown = ({ items, wrapperRef }) => (
 );
 ```
 
+# Hook
+
+`react-click-outside-listener` package also exposes hook to achieve the same functionality. It returns `refs` item similar to `ClickOutsideListener` renderProp argument. It cab be used to set several refs or only one:
+
+```js
+import { useClickOutsideListener } from 'react-click-outside-listener';
+
+const Component = () => {
+    const refs = useClickOutsideListener(
+        () => { ... }
+    );
+
+    // several refs
+    return (
+        <div>
+            Click here to invoke callback
+            <div ref={ refs(0) }>
+                No callback when click here
+            </div>
+            <div>Beware callbacks</div>
+            <div ref={ refs(1) }>
+                Another safe zone
+            </div>
+        </div>
+    );
+}
+
+// or
+
+const Component = () => {
+    const ref = useClickOutsideListener(
+        () => { ... }
+    );
+
+    // one ref
+    return (
+        <div>
+            <div ref={ ref }>
+                No callback when click here
+            </div>
+        </div>
+    );
+}
+```
