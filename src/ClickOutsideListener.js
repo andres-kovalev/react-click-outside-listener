@@ -1,11 +1,11 @@
 const React = require('react');
 
-const useOuterClickListener = require('./useOutsideClickListener');
+const useClickOutsideListener = require('./useClickOutsideListener');
 
-module.exports = OuterClickListener;
+module.exports = ClickOutsideListener;
 
-function OuterClickListener({ onClickOutside, children }) {
-    const refs = useOuterClickListener(onClickOutside);
+function ClickOutsideListener({ onClickOutside, children }) {
+    const refs = useClickOutsideListener(onClickOutside);
 
     if (typeof children === 'function') {
         return children(refs);

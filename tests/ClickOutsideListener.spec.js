@@ -1,15 +1,15 @@
 const React = require('react');
 const { mount } = require('enzyme');
 
-const { OutsideClickListener } = require('../');
+const { ClickOutsideListener } = require('../');
 
-describe('OutsideClickListener', () => {
+describe('ClickOutsideListener', () => {
     it('should render children as is', () => {
         const wrapper = mount(
-            <OutsideClickListener>
+            <ClickOutsideListener>
                 <div id="div-1" />
                 <div id="div-2" />
-            </OutsideClickListener>
+            </ClickOutsideListener>
         );
 
         expect(wrapper.find('#div-1').exists()).toBeTruthy();
@@ -21,14 +21,14 @@ describe('OutsideClickListener', () => {
 
         document.addEventListener = jest.fn();
         const wrapper = mount(
-            <OutsideClickListener onClickOutside={ onClickOutside }>
+            <ClickOutsideListener onClickOutside={ onClickOutside }>
                 {refs => (
                     <React.Fragment>
                         <div ref={ refs(0) } id='div-1' />
                         <div ref={ refs(1) } id='div-2' />
                     </React.Fragment>
                 )}
-            </OutsideClickListener>
+            </ClickOutsideListener>
         );
 
         const [ [ , handleClick ] ] = document.addEventListener.mock.calls;
@@ -48,12 +48,12 @@ describe('OutsideClickListener', () => {
 
         document.addEventListener = jest.fn();
         const wrapper = mount(
-            <OutsideClickListener onClickOutside={ onClickOutside }>
+            <ClickOutsideListener onClickOutside={ onClickOutside }>
                 <div id="div-1" />
                 <div id="div-2">
                     <div id="div-3" />
                 </div>
-            </OutsideClickListener>
+            </ClickOutsideListener>
         );
 
         expect(document.addEventListener).toHaveBeenCalled();
@@ -76,12 +76,12 @@ describe('OutsideClickListener', () => {
         document.addEventListener = jest.fn();
         const wrapper = mount(
             <React.Fragment>
-                <OutsideClickListener onClickOutside={ onClickOutside }>
+                <ClickOutsideListener onClickOutside={ onClickOutside }>
                     <div id="div-1" />
                     <div id="div-2">
                         <div id="div-3" />
                     </div>
-                </OutsideClickListener>
+                </ClickOutsideListener>
                 <div id="div-4" />
             </React.Fragment>
         );
@@ -98,9 +98,9 @@ describe('OutsideClickListener', () => {
     it('should subscribe on document click event only once', () => {
         document.addEventListener = jest.fn();
         const TestComponent = jest.fn(() => (
-            <OutsideClickListener>
+            <ClickOutsideListener>
                 <div />
-            </OutsideClickListener>
+            </ClickOutsideListener>
         ));
 
         const wrapper = mount(

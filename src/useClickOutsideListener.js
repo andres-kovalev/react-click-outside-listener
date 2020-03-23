@@ -1,8 +1,8 @@
 const { useRef, useEffect, useMemo } = require('react');
 
-module.exports = useOutsideClickListener;
+module.exports = useClickOutsideListener;
 
-function useOutsideClickListener(handleOutsideClick) {
+function useClickOutsideListener(handleOutsideClick) {
     const refs = useRefs();
     const callback = useRef();
 
