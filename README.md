@@ -11,6 +11,10 @@
 
 Wrapping component to register click outside.
 
+# Demo
+
+Here is a small [playground](https://codesandbox.io/s/react-click-outside-listener-playground-uu7f7?hidenavigation=1&theme=dark) with couple of examples.
+
 # Installation
 
 As any other npm package `react-click-outside-listener` can be added to your project by following command:
