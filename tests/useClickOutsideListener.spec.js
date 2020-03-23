@@ -4,10 +4,10 @@ const React = require('react');
 const { act } = require('react-dom/test-utils');
 const { mount } = require('enzyme');
 
-const { useOutsideClickListener } = require('../');
+const { useClickOutsideListener } = require('../');
 
 const TestComponent = ({ onClickOutside }) => {
-    const ref = useOutsideClickListener(onClickOutside);
+    const ref = useClickOutsideListener(onClickOutside);
 
     return (
         <div>
@@ -19,7 +19,7 @@ const TestComponent = ({ onClickOutside }) => {
     );
 };
 
-describe('useOutsideClickListener', () => {
+describe('useClickOutsideListener', () => {
     it('should not call onClickOutside callback on click inside children', () => {
         document.addEventListener = jest.fn();
         const onClickOutside = jest.fn();
@@ -77,7 +77,7 @@ describe('useOutsideClickListener', () => {
         document.addEventListener = jest.fn();
         const onClickOutsideSpy = jest.fn();
         const CustomTestComponent = ({ onClickOutside }) => {
-            const refs = useOutsideClickListener(onClickOutside);
+            const refs = useClickOutsideListener(onClickOutside);
 
             return (
                 <div>
@@ -110,7 +110,7 @@ describe('useOutsideClickListener', () => {
     it('should subscribe on document click event only once', () => {
         document.addEventListener = jest.fn();
         const CustomTestComponent = jest.fn(() => {
-            const ref = useOutsideClickListener(() => {});
+            const ref = useClickOutsideListener(() => {});
 
             return (
                 <div ref={ ref } />
@@ -130,7 +130,7 @@ describe('useOutsideClickListener', () => {
         document.addEventListener = jest.fn();
         const log = [];
         const CustomTestComponent = ({ closure }) => {
-            const ref = useOutsideClickListener(
+            const ref = useClickOutsideListener(
                 () => log.push(closure)
             );
 

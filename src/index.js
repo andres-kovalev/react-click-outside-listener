@@ -1,7 +1,7 @@
-const OutsideClickListener = require('./OutsideClickListener');
-const useOutsideClickListener = require('./useOutsideClickListener');
+const ClickOutsideListener = require('./ClickOutsideListener');
+const useClickOutsideListener = require('./useClickOutsideListener');
 
 module.exports = {
-    OutsideClickListener,
-    useOutsideClickListener
+    ClickOutsideListener,
+    useClickOutsideListener
 };
