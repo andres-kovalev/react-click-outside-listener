@@ -1,6 +1,6 @@
 {
     "name": "react-click-outside-listener",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "description": "Wrapping component to register click outside",
     "main": "index.js",
     "scripts": {
